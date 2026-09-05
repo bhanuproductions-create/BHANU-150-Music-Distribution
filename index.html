@@ -1,48 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for
-import os
-
-app = Flask(__name__)
-
-# అప్‌లోడ్ అయ్యే ఫైల్స్ సేవ్ అయ్యే ఫోల్డర్
-UPLOAD_FOLDER = 'uploads'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/upload', methods=['POST'])
-def upload_file():
-    try:
-        artist_name = request.form['artist_name']
-        song_title = request.form['song_title']
-        email = request.form['email']
-        
-        poster = request.files['poster_image']
-        audio = request.files['audio_file']
-        
-        if poster and audio:
-            poster_path = os.path.join(app.config['UPLOAD_FOLDER'], poster.filename)
-            audio_path = os.path.join(app.config['UPLOAD_FOLDER'], audio.filename)
-            
-            poster.save(poster_path)
-            audio.save(audio_path)
-            
-            return f"Success! Song '{song_title}' by {artist_name} uploaded successfully."
-        
-        return "Error: Please upload both poster and audio files."
-    except Exception as e:
-        return f"An error occurred: {str(e)}"
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BHANU 150 Music Distribution Platform</title>
+    <title>BHANU 150 Music Distribution | Full Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -52,7 +13,7 @@ if __name__ == '__main__':
             font-family: 'Inter', sans-serif;
         }
         body {
-            background-color: #09090b;
+            background-color: #050507;
             color: #f4f4f5;
             display: flex;
             justify-content: center;
@@ -60,29 +21,30 @@ if __name__ == '__main__':
             min-height: 100vh;
             padding: 20px;
         }
-        .container {
-            background: #121216;
-            border: 1px solid #27272a;
-            padding: 40px;
+        .card {
+            background: #0e0e12;
+            border: 1px solid #1f1f23;
+            padding: 35px;
             border-radius: 16px;
             width: 100%;
-            max-width: 500px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            max-width: 480px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
         }
         h2 {
-            text-align: center;
             color: #fff;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-size: 24px;
+            text-align: center;
         }
         .subtitle {
-            text-align: center;
             color: #a1a1aa;
             font-size: 13px;
             margin-bottom: 25px;
+            text-align: center;
         }
-        .form-group {
-            margin-bottom: 18px;
+        .group {
+            margin-bottom: 16px;
+            text-align: left;
         }
         label {
             display: block;
@@ -91,74 +53,110 @@ if __name__ == '__main__':
             margin-bottom: 6px;
             color: #d4d4d8;
         }
-        input[type="text"], input[type="email"], input[type="file"] {
+        input, select {
             width: 100%;
-            padding: 12px;
-            background: #18181b;
-            border: 1px solid #3f3f46;
+            padding: 12px 14px;
             border-radius: 8px;
-            color: white;
+            border: 1px solid #27272a;
+            background: #141418;
+            color: #fff;
             font-size: 14px;
             outline: none;
         }
-        input[type="file"] {
-            padding: 8px;
-            cursor: pointer;
-        }
-        input:focus {
+        input:focus, select:focus {
             border-color: #a855f7;
         }
         .submit-btn {
             width: 100%;
             padding: 14px;
             background: linear-gradient(135deg, #8b5cf6, #ec4899);
-            color: white;
             border: none;
             border-radius: 8px;
-            font-size: 15px;
             font-weight: 600;
+            color: #fff;
             cursor: pointer;
             margin-top: 10px;
+            font-size: 15px;
             transition: opacity 0.3s;
         }
         .submit-btn:hover {
             opacity: 0.9;
         }
+        .support-info {
+            font-size: 12px;
+            color: #71717a;
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="card">
         <h2>BHANU 150</h2>
-        <p class="subtitle">Music Distribution Portal</p>
+        <p class="subtitle">Global Music Distribution Portal</p>
         
-        <form action="/upload" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <label>Artist / Band Name</label>
-                <input type="text" name="artist_name" placeholder="Enter artist name" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Song Title</label>
-                <input type="text" name="song_title" placeholder="Enter song title" required>
-            </div>
+        <div class="group">
+            <label>Artist / Band Name</label>
+            <input type="text" id="artistName" placeholder="Enter artist name" required autocomplete="off">
+        </div>
 
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" name="email" placeholder="your.email@gmail.com" required>
-            </div>
+        <div class="group">
+            <label>Song Title</label>
+            <input type="text" id="songTitle" placeholder="Enter song title" required autocomplete="off">
+        </div>
 
-            <div class="form-group">
-                <label>Poster Image (Cover Art)</label>
-                <input type="file" name="poster_image" accept="image/*" required>
-            </div>
+        <div class="group">
+            <label>Email Address</label>
+            <input type="email" id="email" placeholder="artist@gmail.com" required autocomplete="off">
+        </div>
 
-            <div class="form-group">
-                <label>Audio File (WAV / MP3)</label>
-                <input type="file" name="audio_file" accept="audio/*" required>
-            </div>
+        <div class="group">
+            <label>Primary Music Store</label>
+            <select id="store">
+                <option value="All Platforms (Spotify, Apple, JioSaavn, etc.)">All Platforms (150+ Stores)</option>
+                <option value="Spotify Only">Spotify Only</option>
+                <option value="Apple Music Only">Apple Music Only</option>
+                <option value="JioSaavn & Wynk">JioSaavn & Wynk</option>
+            </select>
+        </div>
 
-            <button type="submit" class="submit-btn">Upload & Process</button>
-        </form>
+        <div class="group">
+            <label>Audio File Link (Google Drive / Dropbox)</label>
+            <input type="url" id="audioLink" placeholder="Paste your audio link here" required>
+        </div>
+
+        <button class="submit-btn" onclick="submitFullDetails()">Submit & Send via WhatsApp</button>
+
+        <div class="support-info">
+            Helpline: 9705180655
+        </div>
     </div>
+
+    <script>
+        function submitFullDetails() {
+            let artist = document.getElementById('artistName').value;
+            let song = document.getElementById('songTitle').value;
+            let email = document.getElementById('email').value;
+            let store = document.getElementById('store').value;
+            let link = document.getElementById('audioLink').value;
+
+            if(!artist || !song || !email || !link) {
+                alert("దయచేసి అన్ని వివరాలను పూర్తిగా ఎంటర్ చేయండి!");
+                return;
+            }
+
+            // పూర్తి వివరాలతో వాట్సాప్ మెసేజ్ ఫార్మాట్ తయారవుతుంది
+            let message = "🎵 *NEW MUSIC SUBMISSION*%0A" +
+                          "👤 *Artist:* " + encodeURIComponent(artist) + "%0A" +
+                          "🎶 *Song Title:* " + encodeURIComponent(song) + "%0A" +
+                          "📧 *Email:* " + encodeURIComponent(email) + "%0A" +
+                          "🌐 *Platform:* " + encodeURIComponent(store) + "%0A" +
+                          "🔗 *Audio Link:* " + encodeURIComponent(link);
+
+            let url = "https://wa.me/919705180655?text=" + message;
+            window.location.href = url;
+        }
+    </script>
 </body>
 </html>
+
