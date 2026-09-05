@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BHANU 150 – Free Music Distribution Platform</title>
+    <meta name="description" content="Distribute your music, manage your artist profile, protect your rights, track royalties and grow your music career with BHANU 150.">
+    <meta name="keywords" content="Bhanu 150, Bhanu 150 Distribution, music distribution, free music distribution, Indian music distribution, independent artists, music royalties, artist verification, copyright management">
+    
+    <meta property="og:title" content="BHANU 150 – Free Music Distribution Platform">
+    <meta property="og:description" content="Your Music. Every Platform. Distribute free worldwide with BHANU 150.">
+    <meta property="og:type" content="website">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#0a0a0c',
+                        cardbg: '#121217',
+                        cardhover: '#1a1a24',
+                        accent: '#6366f1',
+                        accentglow: 'rgba(99, 102, 241, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0a0a0c;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(18, 18, 23, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-nav {
+            background: rgba(10, 10, 12, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);
+        }
+        .hero-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        /* Hide scrollbars for clean look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#home" onclick="router('home')" class="flex items-center space-x-3 group cursor-pointer">
+                <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-wave-square text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-wider gradient-text">BHANU 150</span>
+                    <span class="block text-[10px] uppercase tracking-widest text-indigo-400 font-semibold -mt-1">Music Distribution</span>
+                </div>
+            </a>
+
+            <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 text-sm font-medium text-gray-300">
+                <a href="#home" onclick="router('home')" class="nav-link px-3 py-2 rounded-lg hover:text-white hover:bg-white/5 transition-colors active-nav">Home</a>
+                <a href="#distribution" onclick="router('distribution')" class="nav-link px-3 py-2 rounded-lg hover:text-white hover:bg-white/5 transition-colors">Distribution</a>
+                <a href="#pricing" onclick="router('pricing')" class="nav-link px-3 py-2 rounded-lg hover:text-white hover:bg-white/5 transition-colors">Pricing</a>
+                <a href="#artists" onclick="router('artists')" class="nav-link px-3 py-2 rounded-lg hover:text-white hover:bg-white/5 transition-colors">Artists</a>
+                <a href="#verification" onclick="router('verification')" class="nav-link px-3 py-2 rounded-lg hover:text-white hover:bg-white/5 transition-colors">Verification</a>
+                <a href="#analytics" onclick="router('analytics')" class="nav-link px-3 py-2 rounded-lg hover:text-white hover:bg-white/5 transition-colors">Analytics</a>
+                <a href="#about" onclick="router('about')" class="nav-link px-3 py-2 rounded-lg hover:text-white hover:bg-white/5 transition-colors">About</a>
+                <a href="#faq" onclick="router('faq')" class="nav-link px-3 py-2 rounded-lg hover:text-white hover:bg-white/5 transition-colors">FAQ</a>
+                <a href="#contact" onclick="router('contact')" class="nav-link px-3 py-2 rounded-lg hover:text-white hover:bg-white/5 transition-colors">Contact</a>
+            </nav>
+
+            <div class="hidden lg:flex items-center space-x-3">
+                <a href="#signin" onclick="router('signin')" class="px-4 py-2 text-sm font-semibold text-gray-300 hover:text-white transition-colors">Sign In</a>
+                <a href="#signup" onclick="router('signup')" class="px-4 py-2 text-sm font-semibold text-white gradient-bg rounded-xl shadow-lg shadow-indigo-500/20 hover:opacity-90 transition-opacity">Sign Up</a>
+                <a href="#dashboard" onclick="router('dashboard')" class="px-3 py-2 text-xs font-bold text-indigo-300 bg-indigo-500/10 border border-indigo-500/30 rounded-xl hover:bg-indigo-500/20 transition-all flex items-center space-x-1.5" title="SaaS Demo Dashboard">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <span>App Demo</span>
+                </a>
+                <a href="#admin" onclick="router('admin')" class="px-2.5 py-2 text-xs font-bold text-rose-300 bg-rose-500/10 border border-rose-500/30 rounded-xl hover:bg-rose-500/20 transition-all" title="Admin Panel">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl bg-white/5 text-gray-300 hover:text-white focus:outline-none">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden glass-card border-t border-white/10 px-6 py-6 space-y-4">
+            <nav class="flex flex-col space-y-3 text-base font-medium">
+                <a href="#home" onclick="router('home'); toggleMobileMenu();" class="text-gray-300 hover:text-white py-1">Home</a>
+                <a href="#distribution" onclick="router('distribution'); toggleMobileMenu();" class="text-gray-300 hover:text-white py-1">Distribution</a>
+                <a href="#pricing" onclick="router('pricing'); toggleMobileMenu();" class="text-gray-300 hover:text-white py-1">Pricing</a>
+                <a href="#artists" onclick="router('artists'); toggleMobileMenu();" class="text-gray-300 hover:text-white py-1">Artists</a>
+                <a href="#verification" onclick="router('verification'); toggleMobileMenu();" class="text-gray-300 hover:text-white py-1">Verification</a>
+                <a href="#analytics" onclick="router('analytics'); toggleMobileMenu();" class="text-gray-300 hover:text-white py-1">Analytics</a>
+                <a href="#about" onclick="router('about'); toggleMobileMenu();" class="text-gray-300 hover:text-white py-1">About</a>
+                <a href="#faq" onclick="router('faq'); toggleMobileMenu();" class="text-gray-300 hover:text-white py-1">FAQ</a>
+                <a href="#contact" onclick="router('contact'); toggleMobileMenu();" class="text-gray-300 hover:text-white py-1">Contact</a>
+            </nav>
+            <div class="pt-4 border-t border-white/10 flex flex-col space-y-3">
+                <a href="#signin" onclick="router('signin'); toggleMobileMenu();" class="w-full py-2.5 text-center font-semibold text-gray-300 bg-white/5 rounded-xl">Sign In</a>
+                <a href="#signup" onclick="router('signup'); toggleMobileMenu();" class="w-full py-2.5 text-center font-semibold text-white gradient-bg rounded-xl shadow-lg shadow-indigo-500/20">Sign Up</a>
+                <a href="#dashboard" onclick="router('dashboard'); toggleMobileMenu();" class="w-full py-2.5 text-center font-semibold text-indigo-300 bg-indigo-500/10 border border-indigo-500/30 rounded-xl">Artist Dashboard</a>
+                <a href="#admin" onclick="router('admin'); toggleMobileMenu();" class="w-full py-2.5 text-center font-semibold text-rose-300 bg-rose-500/10 border border-rose-500/30 rounded-xl">Admin Panel</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="app-container" class="flex-grow pt-20">
+        </main>
+
+    <footer class="bg-cardbg border-t border-white/10 pt-16 pb-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                            <i class="fa-solid fa-wave-square text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <span class="text-xl font-extrabold tracking-wider gradient-text">BHANU 150</span>
+                            <span class="block text-[10px] uppercase tracking-widest text-indigo-400 font-semibold -mt-1">Music Distribution</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 leading-relaxed max-w-sm">
+                        Your Music. Every Platform. Distribute your independent music globally, protect your copyright, track performance, and grow your career with ₹0 setup or subscription fees.
+                    </p>
+                    <div class="flex items-center space-x-3 text-sm text-gray-400">
+                        <i class="fa-solid fa-envelope text-indigo-400"></i>
+                        <span>bhanuproductions@gmail.com</span>
+                    </div>
+                    <div class="flex items-center space-x-3 text-sm text-gray-400">
+                        <i class="fa-solid fa-phone text-indigo-400"></i>
+                        <span>+91 9705180655</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Platform</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li><a href="#home" onclick="router('home')" class="hover:text-indigo-400 transition-colors">Home</a></li>
+                        <li><a href="#distribution" onclick="router('distribution')" class="hover:text-indigo-400 transition-colors">Distribution</a></li>
+                        <li><a href="#pricing" onclick="router('pricing')" class="hover:text-indigo-400 transition-colors">Pricing</a></li>
+                        <li><a href="#artists" onclick="router('artists')" class="hover:text-indigo-400 transition-colors">Artists</a></li>
+                        <li><a href="#verification" onclick="router('verification')" class="hover:text-indigo-400 transition-colors">Verification</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Resources</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li><a href="#analytics" onclick="router('analytics')" class="hover:text-indigo-400 transition-colors">Analytics</a></li>
+                        <li><a href="#about" onclick="router('about')" class="hover:text-indigo-400 transition-colors">About Us</a></li>
+                        <li><a href="#faq" onclick="router('faq')" class="hover:text-indigo-400 transition-colors">FAQ</a></li>
+                        <li><a href="#contact" onclick="router('contact')" class="hover:text-indigo-400 transition-colors">Contact Support</a></li>
+                        <li><a href="#dashboard" onclick="router('dashboard')" class="hover:text-indigo-400 transition-colors">Artist Dashboard</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Legal & Policy</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li><a href="#legal-privacy" onclick="router('legal-privacy')" class="hover:text-indigo-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="#legal-terms" onclick="router('legal-terms')" class="hover:text-indigo-400 transition-colors">Terms & Conditions</a></li>
+                        <li><a href="#legal-copyright" onclick="router('legal-copyright')" class="hover:text-indigo-400 transition-colors">Copyright Policy</a></li>
+                        <li><a href="#legal-distribution" onclick="router('legal-distribution')" class="hover:text-indigo-400 transition-colors">Distribution Policy</a></li>
+                        <li><a href="#legal-agreement" onclick="router('legal-agreement')" class="hover:text-indigo-400 transition-colors">Artist Agreement</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 space-y-4 sm:space-y-0">
+                <p>&copy; 2026 Bhanu 150. All Rights Reserved. Bhanu 150 Music Distribution.</p>
+                <div class="flex items-center space-x-6">
+                    <a href="#legal-privacy" onclick="router('legal-privacy')" class="hover:text-gray-400 transition-colors">Privacy</a>
+                    <a href="#legal-terms" onclick="router('legal-terms')" class="hover:text-gray-400 transition-colors">Terms</a>
+                    <a href="#legal-copyright" onclick="router('legal-copyright')" class="hover:text-gray-400 transition-colors">Copyright</a>
+                    <span class="text-indigo-400 font-medium">Bhanu 150 Distribution</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Supabase Client Setup Placeholder
+        const SUPABASE_URL = "YOUR_SUPABASE_URL_HERE";
+        const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY_HERE";
+        
+        let currentRoute = 'home';
+        let currentUser = null;
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function router(route) {
+            currentRoute = route;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            renderView(route);
+            updateActiveNavLink(route);
+        }
+
+        function updateActiveNavLink(route) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('text-white', 'bg-white/10');
+                if(link.getAttribute('href') === '#' + route) {
+                    link.classList.add('text-white', 'bg-white/10');
+                }
+            });
+        }
+
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.substring(1) || 'home';
+            router(hash);
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const initialHash = window.location.hash.substring(1) || 'home';
+            router(initialHash);
+        });
+
+        function renderView(route) {
+            const container = document.getElementById('app-container');
+            
+            switch(route) {
+                case 'home': container.innerHTML = getHomeView(); break;
+                case 'distribution': container.innerHTML = getDistributionView(); break;
+                case 'pricing': container.innerHTML = getPricingView(); break;
+                case 'artists': container.innerHTML = getArtistsView(); break;
+                case 'artist-profile': container.innerHTML = getArtistProfileView(); break;
+                case 'verification': container.innerHTML = getVerificationView(); break;
+                case 'analytics': container.innerHTML = getAnalyticsView(); break;
+                case 'about': container.innerHTML = getAboutView(); break;
+                case 'faq': container.innerHTML = getFAQView(); break;
+                case 'contact': container.innerHTML = getContactView(); break;
+                case 'signin': container.innerHTML = getSignInView(); break;
+                case 'signup': container.innerHTML = getSignUpView(); break;
+                case 'forgot-password': container.innerHTML = getForgotPasswordView(); break;
+                case 'dashboard': container.innerHTML = getDashboardView(); break;
+                case 'upload': container.innerHTML = getUploadWizardView(); break;
+                case 'my-releases': container.innerHTML = getMyReleasesView(); break;
+                case 'release-details': container.innerHTML = getReleaseDetailsView(); break;
+                case 'royalties': container.innerHTML = getRoyaltiesView(); break;
+                case 'payments': container.innerHTML = getPaymentsView(); break;
+                case 'copyright-center': container.innerHTML = getCopyrightCenterView(); break;
+                case 'support': container.innerHTML = getSupportView(); break;
+                case 'notifications': container.innerHTML = getNotificationsView(); break;
+                case 'admin': container.innerHTML = getAdminView(); break;
+                case 'legal-privacy': container.innerHTML = getLegalPrivacyView(); break;
+                case 'legal-terms': container.innerHTML = getLegalTermsView(); break;
+                case 'legal-copyright': container.innerHTML = getLegalCopyrightView(); break;
+                case 'legal-distribution': container.innerHTML = getLegalDistributionView(); break;
+                case 'legal-agreement': container.innerHTML = getLegalAgreementView(); break;
+                default: container.innerHTML = getHomeView();
+            }
+        }
+
+        function getHomeView() {
+            return `
+                <div class="relative overflow-hidden pt-10 pb-20">
+                    <div class="hero-glow top-10 left-1/2 -translate-x-1/2"></div>
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <div class="text-center max-w-3xl mx-auto space-y-6 pt-10">
+                            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/35 text-indigo-300 text-xs font-semibold">
+                                <i class="fa-solid fa-bolt text-indigo-400"></i>
+                                <span>Welcome to BHANU 150 Music Distribution</span>
+                            </div>
+                            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black leading-tight">
+                                <span class="gradient-text">Your Music.</span><br>
+                                <span class="gradient-text">Every Platform.</span>
+                            </h1>
+                            <p class="text-lg text-gray-400 leading-relaxed">
+                                Distribute your music to 150+ platforms worldwide. Zero setup fees. Zero monthly subscriptions. Just pure music distribution.
+                            </p>
+                            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
+                                <a href="#signup" onclick="router('signup')" class="px-8 py-3 text-lg font-bold text-white gradient-bg rounded-xl shadow-lg shadow-indigo-500/30 hover:opacity-90 transition-all">Get Started Free</a>
+                                <a href="#distribution" onclick="router('distribution')" class="px-8 py-3 text-lg font-bold text-indigo-300 bg-indigo-500/10 border border-indigo-500/30 rounded-xl hover:bg-indigo-500/20 transition-all">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getDistributionView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Distribution</h1><p class="text-gray-300">Distribution features coming soon...</p></div>`;
+        }
+
+        function getPricingView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Pricing</h1><p class="text-gray-300">Pricing details coming soon...</p></div>`;
+        }
+
+        function getArtistsView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Featured Artists</h1><p class="text-gray-300">Artist profiles coming soon...</p></div>`;
+        }
+
+        function getArtistProfileView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Artist Profile</h1><p class="text-gray-300">Artist profile details coming soon...</p></div>`;
+        }
+
+        function getVerificationView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Artist Verification</h1><p class="text-gray-300">Verification process coming soon...</p></div>`;
+        }
+
+        function getAnalyticsView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Analytics</h1><p class="text-gray-300">Analytics dashboard coming soon...</p></div>`;
+        }
+
+        function getAboutView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">About Us</h1><p class="text-gray-300">About page coming soon...</p></div>`;
+        }
+
+        function getFAQView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">FAQ</h1><p class="text-gray-300">FAQ section coming soon...</p></div>`;
+        }
+
+        function getContactView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Contact Us</h1><p class="text-gray-300">Contact page coming soon...</p></div>`;
+        }
+
+        function getSignInView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Sign In</h1><p class="text-gray-300">Sign in form coming soon...</p></div>`;
+        }
+
+        function getSignUpView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Sign Up</h1><p class="text-gray-300">Sign up form coming soon...</p></div>`;
+        }
+
+        function getForgotPasswordView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Forgot Password</h1><p class="text-gray-300">Password recovery coming soon...</p></div>`;
+        }
+
+        function getDashboardView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Artist Dashboard</h1><p class="text-gray-300">Dashboard coming soon...</p></div>`;
+        }
+
+        function getUploadWizardView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Upload Music</h1><p class="text-gray-300">Upload wizard coming soon...</p></div>`;
+        }
+
+        function getMyReleasesView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">My Releases</h1><p class="text-gray-300">Releases management coming soon...</p></div>`;
+        }
+
+        function getReleaseDetailsView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Release Details</h1><p class="text-gray-300">Release details coming soon...</p></div>`;
+        }
+
+        function getRoyaltiesView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Royalties</h1><p class="text-gray-300">Royalties tracking coming soon...</p></div>`;
+        }
+
+        function getPaymentsView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Payments</h1><p class="text-gray-300">Payments management coming soon...</p></div>`;
+        }
+
+        function getCopyrightCenterView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Copyright Center</h1><p class="text-gray-300">Copyright management coming soon...</p></div>`;
+        }
+
+        function getSupportView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Support</h1><p class="text-gray-300">Support center coming soon...</p></div>`;
+        }
+
+        function getNotificationsView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Notifications</h1><p class="text-gray-300">Notifications coming soon...</p></div>`;
+        }
+
+        function getAdminView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Admin Panel</h1><p class="text-gray-300">Admin panel coming soon...</p></div>`;
+        }
+
+        function getLegalPrivacyView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Privacy Policy</h1><p class="text-gray-300">Privacy policy coming soon...</p></div>`;
+        }
+
+        function getLegalTermsView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Terms & Conditions</h1><p class="text-gray-300">Terms & conditions coming soon...</p></div>`;
+        }
+
+        function getLegalCopyrightView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Copyright Policy</h1><p class="text-gray-300">Copyright policy coming soon...</p></div>`;
+        }
+
+        function getLegalDistributionView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Distribution Policy</h1><p class="text-gray-300">Distribution policy coming soon...</p></div>`;
+        }
+
+        function getLegalAgreementView() {
+            return `<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"><h1 class="text-4xl font-bold gradient-text mb-8">Artist Agreement</h1><p class="text-gray-300">Artist agreement coming soon...</p></div>`;
+        }
+    </script>
+</body>
+</html>
